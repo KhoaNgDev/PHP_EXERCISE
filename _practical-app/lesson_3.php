@@ -32,8 +32,9 @@
 		}
 		?>
 
-		<h3 style="color:red">Step 3: Make a switch Statement that test against one condition with 5 cases:</h3>
 		<?php
+		echo '<h3 style="color:red">Step 3: Make a switch Statement that test against one condition with 5 cases:</h3>';
+
 		$day = "Wednesday";
 
 		switch ($day) {
@@ -55,6 +56,20 @@
 			default:
 				echo "It's the weekend!";
 				break;
+		}
+		echo '<br>';
+		echo '<h3 style="color:red">Step 4: Make a While Loop  :</h3>';
+		$counter = 0;
+		while ($counter < 10) {
+			echo $counter . "<br>";
+			$counter++;
+		}
+		echo '<br>';
+		echo '<h3 style="color:red">Step 5: Make a Foreach Loop  :</h3>';
+		$numbers = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
+		foreach ($numbers as $number) {
+			echo $number . "<br>";
+	
 		}
 		?>
 

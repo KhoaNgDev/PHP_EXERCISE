@@ -33,9 +33,14 @@
 		echo "Regular Array: ";
 		print_r($regularArray);
 		echo "<br><br>";
+		echo "Regular Array [0]: ";
+		echo $regularArray[0];
+		echo "<br><br>";
 
 		echo "Associative Array: ";
 		print_r($associativeArray);
+		echo "<br><br>";
+		echo $associativeArray['first'];
 		?>
 
 	</article><!--MAIN CONTENT-->

@@ -1,4 +1,7 @@
 Home:index.php
+Practice Basic:basic.php
+Practice Important:important.php
+Practice Section 0:lesson_0.php
 Practice Section 1:lesson_1.php
 Practice Section 2:lesson_2.php
 Practice Section 3:lesson_3.php
