@@ -11,26 +11,31 @@
 	</aside><!--SIDEBAR-->
 
 
-<article class="main-content col-xs-8">
+	<article class="main-content col-xs-8">
+        <?php  
+        // Step 1: Define a function to calculate the sum of two numbers
+        echo '<h3 style="color: red;">Step 1: Define a function to calculate the sum of two numbers</h3>';
 
-	
-	<?php  
+        function addNumbers($num1, $num2) {
+            return $num1 + $num2;
+        }
 
-/*  Step1: Define a function and make it return a calculation of 2 numbers
+        // Example usage of the addNumbers function
+        $sum = addNumbers(10, 20);
+        echo "The sum of 10 and 20 is: " . $sum . "<br>";
 
-	Step 2: Make a function that passes parameters and call it using parameter values
+        // Step 2: Define a function that multiplies two numbers
+        echo '<h3 style="color: red;">Step 2: Define a function that multiplies two numbers</h3>';
 
+        function multiplyNumbers($num1, $num2) {
+            return $num1 * $num2;
+        }
 
- */
-
-	
-?>
-
-
-
-
-
-</article><!--MAIN CONTENT-->
+        // Call the multiplyNumbers function with parameters and display the result
+        $product = multiplyNumbers(5, 10);
+        echo "The result of the multiplication is: " . $product;
+        ?>
+    </article><!--MAIN CONTENT-->
 
 
 <?php include "includes/footer.php"; ?>
