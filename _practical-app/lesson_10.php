@@ -1,7 +1,5 @@
 <?php include "functions.php"; ?>
 <?php include "includes/header.php"; ?>
-
-
 <section class="content">
 
     <aside class="col-xs-4">
@@ -11,22 +9,25 @@
 
     </aside><!--SIDEBAR-->
 
-
     <article class="main-content col-xs-8">
-
 
 
         <?php
 
-        /*  Step 1 - Create a database in PHPmyadmin
+        /*  Step 1: Use the Make a class called Dog
 
-		Step 2 - Create a table like the one from the lecture
+		Step 2: Set some properties for Dog, Example, eye colors, nose, or fur color
 
-		Step 3 - Insert some Data
+		Step 4: Make a method named ShowAll that echos all the properties
 
-		Step 4 - Connect to Database and read data
+		Step 5: Instantiate the class / create object and call it pitbull
 
-*/
+Step 6: Call the method ShowAll
+
+	
+
+		
+	*/
 
         ?>
 
