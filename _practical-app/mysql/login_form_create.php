@@ -1,4 +1,5 @@
 <?php
+include "db.php";   
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -9,13 +10,6 @@ if (isset($_POST['submit'])) {
         die('Please fill out both fields.');
     }
 
-    // Kết nối tới cơ sở dữ liệu
-    $CONNECTION = mysqli_connect('localhost', 'root', '', 'TEST_PHP_DB');
-    if (!$CONNECTION) {
-        die("FAILED TO CONNECT TO THE MYSQL DATABASE: " . mysqli_connect_error());
-    }
-
-    // Chèn dữ liệu vào bảng
     $query = "INSERT INTO users(username, password)";
     $query .= "VALUES('$username', '$password')";
     $result = mysqli_query($CONNECTION, $query);

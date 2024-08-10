@@ -45,4 +45,27 @@ function updateTable()
         echo "Please fill in all fields.";
     }
 }
+function deleteRows()
+{
+    global $CONNECTION;
+
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+
+        // Câu lệnh SQL
+        $query = "DELETE FROM users ";
+        $query .= "WHERE id = '$id'";
+
+        $result = mysqli_query($CONNECTION, $query);
+
+        if (!$result) {
+            die("MYSQL QUERY FAILED: " . mysqli_error($CONNECTION));
+        } else {
+            echo "User Deleted Successfully.";
+        }
+    } else {
+        echo "Please fill in all fields.";
+    }
+}
+
 ?>
