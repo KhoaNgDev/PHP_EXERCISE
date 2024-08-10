@@ -7,18 +7,7 @@ if (isset($_POST['submit'])) {
    updateTable();
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>USER UPDATE DATA</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-</head>
-
-<body>
+<?php include "includes/header.php" ?>
     <div class="container">
         <div class="col-xs-6">
         <h1 class="text-center">Update User</h1>
@@ -45,7 +34,4 @@ if (isset($_POST['submit'])) {
             </form>
         </div>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+<?php include "includes/footer.php" ?>

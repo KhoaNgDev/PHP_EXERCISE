@@ -95,5 +95,32 @@ function createRows()
         mysqli_close($CONNECTION);
     }
 }
-
-?>
+function readRows() {
+    global $CONNECTION;
+    
+    // Câu truy vấn SQL để lấy tất cả các dữ liệu từ bảng 'users'
+    $query = "SELECT * FROM users";
+    
+    // Thực hiện truy vấn
+    $result = mysqli_query($CONNECTION, $query);
+    
+    // Kiểm tra xem truy vấn có thành công không
+    if (!$result) {
+        die("MYSQL QUERY FAILED: " . mysqli_error($CONNECTION));
+    }
+    
+    // Duyệt qua từng hàng dữ liệu và in ra dưới dạng HTML
+    while ($row = mysqli_fetch_assoc($result)) {
+        $id = $row['id'];
+        $username = $row['username'];
+        $password = $row['password'];
+        
+        // In hàng dữ liệu dưới dạng hàng trong bảng HTML
+        echo "<tr>";
+        echo "<th scope='row'>{$id}</th>";
+        echo "<td>{$username}</td>";
+        echo "<td>{$password}</td>";
+        echo "<td><a href='login_update.php?id={$id}'>Edit</a></td>";
+        echo "</tr>";
+    }
+}
