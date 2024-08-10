@@ -17,31 +17,51 @@
 
 
         <?php
+        if (isset($_POST['submit'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $password = password_hash($password, PASSWORD_DEFAULT);
 
-        /*  Step 1 - Create a database in PHPmyadmin
-            CREATE DATABASE TEST_PHP_DB
-        
+            // Kiểm tra dữ liệu đầu vào
+            if (empty($username) || empty($password)) {
+                die('Please fill out both fields.');
+            }
 
-		Step 2 - Create a table like the one from the lecture
+            // Kết nối tới cơ sở dữ liệu
+            $CONNECTION = mysqli_connect('localhost', 'root', '', 'TEST_PHP_DB');
+            if (!$CONNECTION) {
+                die("FAILED TO CONNECT TO THE MYSQL DATABASE: " . mysqli_connect_error());
+            }
 
-            CREATE TABLE users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(100) NOT NULL,
-            password VARCHAR(100) NOT NULL
-            );
+            // Chèn dữ liệu vào bảng
+            $query = "INSERT INTO users(username, password)";
+            $query .= "VALUES('$username', '$password')";
+            $result = mysqli_query($CONNECTION, $query);
 
-		Step 3 - Insert some Data
-        
-        INSERT INTO users (username, password) VALUES ('Kevin Nguyen', 'kevin.nganhkhoa@gmail.com');
-        INSERT INTO users (username, password) VALUES ('Nancy Le', 'nancy.le@gmail.com');
+            if ($result) {
+                echo "User registered successfully.";
+            } else {
+                die('QUERY FAILED: ' . mysqli_error($CONNECTION));
+            }
 
-		Step 4 - Connect to Database and read data
-
-*/
-
+            // Đóng kết nối
+            mysqli_close($CONNECTION);
+        }
         ?>
 
-
+        <form action="lesson_7.php" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" id="username" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password" placeholder="">
+            </div>
+            <div class="mb-3">
+                <input type="submit" name="submit" class="form-control btn btn-primary" value="Submit">
+            </div>
+        </form>
 
 
 
