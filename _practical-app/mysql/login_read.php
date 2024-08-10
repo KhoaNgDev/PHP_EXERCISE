@@ -30,6 +30,7 @@ $result = mysqli_query($CONNECTION, $query);
 <body>
     <div class="container">
         <div class="col-xs-6">
+        <h1 class="text-center">Read User</h1>
             <table class="table">
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {

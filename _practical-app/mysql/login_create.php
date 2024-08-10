@@ -1,31 +1,9 @@
+<?php include "db.php"; ?>
+<?php include "functions.php"; ?>
+
 <?php
-include "db.php";   
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Kiểm tra dữ liệu đầu vào
-    if (empty($username) || empty($password)) {
-        die('Please fill out both fields.');
-    }
-
-    $query = "INSERT INTO users(username, password)";
-    $query .= "VALUES('$username', '$password')";
-    $result = mysqli_query($CONNECTION, $query);
-
-    if ($result) {
-        echo "User registered successfully.";
-    } else {
-        die('QUERY FAILED: ' . mysqli_error($CONNECTION));
-    }
-
-    // Đóng kết nối
-    mysqli_close($CONNECTION);
-}
+createRows();
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +20,8 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="container">
         <div class="col-xs-6">
-            <form action="login_form_create.php" method="post">
+            <h1 class="text-center">Create User</h1>
+            <form action="login_create.php" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" name="username" class="form-control" id="username" placeholder="">

@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="container">
         <div class="col-xs-6">
+        <h1 class="text-center">Update User</h1>
             <form action="login_update.php" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
