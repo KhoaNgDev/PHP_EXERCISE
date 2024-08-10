@@ -26,14 +26,14 @@
 
             CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(100) NOT NULL,
-            email VARCHAR(100) NOT NULL
+            username VARCHAR(100) NOT NULL,
+            password VARCHAR(100) NOT NULL
             );
 
 		Step 3 - Insert some Data
         
-        INSERT INTO users (name, email) VALUES ('Kevin Nguyen', 'kevin.nganhkhoa@gmail.com');
-        INSERT INTO users (name, email) VALUES ('Nancy Le', 'nancy.le@gmail.com');
+        INSERT INTO users (username, password) VALUES ('Kevin Nguyen', 'kevin.nganhkhoa@gmail.com');
+        INSERT INTO users (username, password) VALUES ('Nancy Le', 'nancy.le@gmail.com');
 
 		Step 4 - Connect to Database and read data
 
