@@ -12,7 +12,7 @@ function showAllData() {
         die("MYSQL QUERY FAILED: " . mysqli_error($CONNECTION));
     }
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<option value='" . $row['id'] . "'>" . $row['username']. "</option>";
+        echo "<option value=" . $row['id'] . ">" . $row['username']. "</option>";
     }
 }
 

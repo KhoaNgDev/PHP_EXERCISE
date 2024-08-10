@@ -14,7 +14,10 @@ if (isset($_POST['submit'])) {
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         // Câu lệnh SQL
-        $query = "UPDATE users SET username = '$username', password = '$password' WHERE id = '$id'";
+        $query = "UPDATE users SET ";
+        $query .= "username = '" . mysqli_real_escape_string($CONNECTION, $username) . "', ";
+        $query .= "password = '" . mysqli_real_escape_string($CONNECTION, $password) . "' ";
+        $query .= "WHERE id = '" . mysqli_real_escape_string($CONNECTION, $id) . "'";
         $result = mysqli_query($CONNECTION, $query);
 
         if (!$result) {
