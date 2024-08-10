@@ -17,52 +17,55 @@
 
 
         <?php
-        if (isset($_POST['submit'])) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-            $password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Kiểm tra dữ liệu đầu vào
-            if (empty($username) || empty($password)) {
-                die('Please fill out both fields.');
-            }
-
+        function readRow()
+        {
             // Kết nối tới cơ sở dữ liệu
             $CONNECTION = mysqli_connect('localhost', 'root', '', 'TEST_PHP_DB');
             if (!$CONNECTION) {
                 die("FAILED TO CONNECT TO THE MYSQL DATABASE: " . mysqli_connect_error());
             }
 
-            // Chèn dữ liệu vào bảng
-            $query = "INSERT INTO users(username, password)";
-            $query .= "VALUES('$username', '$password')";
+            $query = "SELECT * FROM users";
+
+            // Thực hiện truy vấn
             $result = mysqli_query($CONNECTION, $query);
 
-            if ($result) {
-                echo "User registered successfully.";
-            } else {
-                die('QUERY FAILED: ' . mysqli_error($CONNECTION));
+            // Kiểm tra xem truy vấn có thành công không
+            if (!$result) {
+                die("MYSQL QUERY FAILED: " . mysqli_error($CONNECTION));
             }
 
-            // Đóng kết nối
-            mysqli_close($CONNECTION);
+            // Duyệt qua từng hàng dữ liệu và in ra dưới dạng HTML
+            while ($row = mysqli_fetch_assoc($result)) {
+                $id = $row['id'];
+                $username = $row['username'];
+                $password = $row['password'];
+
+                // In hàng dữ liệu dưới dạng hàng trong bảng HTML
+                echo "<tr>";
+                echo "<th scope='row'>{$id}</th>";
+                echo "<td>{$username}</td>";
+                echo "<td>{$password}</td>";     
+                echo "</tr>";
+            }
         }
         ?>
-
-        <form action="lesson_7.php" method="post">
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" id="username" placeholder="">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" placeholder="">
-            </div>
-            <div class="mb-3">
-                <input type="submit" name="submit" class="form-control btn btn-primary" value="Submit">
-            </div>
-        </form>
-
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                     
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        readRow();
+                        ?>
+                    </tbody>
+                </table>
+      
 
 
     </article><!--MAIN CONTENT-->
