@@ -12,7 +12,7 @@ function showAllData()
         die("MYSQL QUERY FAILED: " . mysqli_error($CONNECTION));
     }
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "<option value='" . htmlspecialchars($row['id']) . "'>" . htmlspecialchars($row['username']) . "</option>";
+        echo "<option value='" . $row['id'] . "'>" . $row['username'] . "</option>";
     }
 }
 
@@ -28,7 +28,11 @@ function updateTable()
 
         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-        $query = "UPDATE users SET username = '$username', password = '$passwordHash' WHERE id = '$id'";
+        // Create query with concatenated strings
+        $query = "UPDATE users SET ";
+        $query .= "username = '" . $username . "', ";
+        $query .= "password = '" . $passwordHash . "' ";
+        $query .= "WHERE id = '" . $id . "'";
         $result = mysqli_query($CONNECTION, $query);
 
         if (!$result) {
@@ -49,7 +53,8 @@ function deleteRows()
     if (isset($_POST['id'])) {
         $id = mysqli_real_escape_string($CONNECTION, $_POST['id']);
 
-        $query = "DELETE FROM users WHERE id = '$id'";
+        // Create query with concatenated strings
+        $query = "DELETE FROM users WHERE id = '" . $id . "'";
         $result = mysqli_query($CONNECTION, $query);
 
         if (!$result) {
@@ -76,7 +81,8 @@ function createRows()
             die('Please fill out both fields.');
         }
 
-        $query = "INSERT INTO users (username, password) VALUES ('$username', '$passwordHash')";
+        // Create query with concatenated strings
+        $query = "INSERT INTO users (username, password) VALUES ('" . $username . "', '" . $passwordHash . "')";
         $result = mysqli_query($CONNECTION, $query);
 
         if ($result) {
@@ -94,6 +100,7 @@ function readRows()
 {
     global $CONNECTION;
 
+    // Create query
     $query = "SELECT * FROM users";
     $result = mysqli_query($CONNECTION, $query);
 
@@ -102,15 +109,16 @@ function readRows()
     }
 
     while ($row = mysqli_fetch_assoc($result)) {
-        $id = htmlspecialchars($row['id']);
-        $username = htmlspecialchars($row['username']);
-        $password = htmlspecialchars($row['password']);
+        $id = $row['id'];
+        $username = $row['username'];
+        $password = $row['password'];
 
+        // Output data as HTML table rows
         echo "<tr>";
-        echo "<th scope='row'>{$id}</th>";
-        echo "<td>{$username}</td>";
-        echo "<td>{$password}</td>";
-        echo "<td><a href='login_update.php?id={$id}'>Edit</a></td>";
+        echo "<th scope='row'>" . $id . "</th>";
+        echo "<td>" . $username . "</td>";
+        echo "<td>" . $password . "</td>";
+        echo "<td><a href='login_update.php?id=" . $id . "'>Edit</a></td>";
         echo "</tr>";
     }
 }
