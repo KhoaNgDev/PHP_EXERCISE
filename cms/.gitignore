@@ -1,6 +1,3 @@
 /vendor/
 
 .env
-_database-supporting-post-likes-section-43.sql
-_new_database.sql
-
